@@ -11,9 +11,9 @@ import ru.inno.model.UserInfo;
 import java.io.IOException;
 
 public class EmployeeServiceResolver implements ParameterResolver {
-    private final static String DEFAULT_USER = "donatello";
-    private final static String DEFAULT_PASS = "does-machines";
-    public static final String URL = "https://x-clients-be.onrender.com";
+    private final static String DEFAULT_USER = PropertyProvider.getInstance().getProps().getProperty("username");
+    private final static String DEFAULT_PASS = PropertyProvider.getInstance().getProps().getProperty("password");
+    public static final String URL = PropertyProvider.getInstance().getProps().getProperty("base.url");
 
     @Override
     public boolean supportsParameter(ParameterContext parameterContext, ExtensionContext extensionContext) throws ParameterResolutionException {

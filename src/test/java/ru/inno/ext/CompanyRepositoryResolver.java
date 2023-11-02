@@ -31,10 +31,10 @@ public class CompanyRepositoryResolver implements ParameterResolver, BeforeAllCa
     @Override
     public void beforeAll(ExtensionContext extensionContext) throws Exception {
         System.out.println("connecting");
-        // TODO: define in .properties
-        String connectionString = "jdbc:postgresql://dpg-cj94hf0eba7s73bdki80-a.oregon-postgres.render.com/x_clients_db_r06g";
-        String user = "x_clients_db_r06g_user";
-        String pass = "0R1RNWXMepS7mrvcKRThRi82GtJ2Ob58";
+
+        String connectionString = PropertyProvider.getInstance().getProps().getProperty("connection");
+        String user = PropertyProvider.getInstance().getProps().getProperty("user");
+        String pass = PropertyProvider.getInstance().getProps().getProperty("pass");
         connection = DriverManager.getConnection(connectionString, user, pass);
     }
 }

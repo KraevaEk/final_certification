@@ -2,6 +2,7 @@ package ru.inno.api;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.qameta.allure.Step;
 import okhttp3.*;
 import org.jetbrains.annotations.NotNull;
 import ru.inno.model.*;
@@ -24,6 +25,7 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
 
+    @Step("Получить список сотрудников по id компании в сервисе")
     @Override
     public List<Employee> getCompanyId(int CompanyId) throws IOException {
         HttpUrl url = getUrl().encodedQuery("company=" + CompanyId).build();
@@ -33,6 +35,7 @@ public class EmployeeServiceImpl implements EmployeeService{
         });
     }
 
+    @Step("Получить сотрудника по id в сервисе")
     @Override
     public Employee getById(int id) throws IOException {
         HttpUrl url = getUrl().addPathSegment(Integer.toString(id)).build();
@@ -41,6 +44,7 @@ public class EmployeeServiceImpl implements EmployeeService{
         return mapper.readValue(response.body().string(), Employee.class);
     }
 
+    @Step("Отредактировать сотрудника в сервисе")
     @Override
     public ApiResponse<EditEmployeeResponse> edit(String lastName, String email, String urlEmployee, String phone, boolean isActive, int employeeId) throws IOException {
         HttpUrl url = getUrl().addPathSegment(Integer.toString(employeeId)).build();

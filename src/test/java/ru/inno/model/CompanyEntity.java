@@ -84,4 +84,17 @@ public class CompanyEntity {
     public int hashCode() {
         return Objects.hash(id, isActive, createDateTime, lastChangedDateTime, name, description, deletedAt);
     }
+
+    @Override
+    public String toString() {
+        return "CompanyEntity{" +
+                "id=" + id +
+                ", isActive=" + isActive +
+                ", createDateTime=" + createDateTime +
+                ", lastChangedDateTime=" + lastChangedDateTime +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", deletedAt=" + deletedAt +
+                '}';
+    }
 }

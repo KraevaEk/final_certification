@@ -1,5 +1,6 @@
 package ru.inno.db;
 
+import io.qameta.allure.Step;
 import ru.inno.model.EmployeeEntity;
 
 import java.sql.*;
@@ -18,6 +19,7 @@ public class EmployeeRepositoryJdbc implements EmployeeRepository{
         this.connection = connection;
     }
 
+    @Step("Получить сотрудника по id компании в БД")
     @Override
     public List<EmployeeEntity> getCompanyId(int companyId) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement(SELECT_COMPANY_ID);
@@ -43,6 +45,7 @@ public class EmployeeRepositoryJdbc implements EmployeeRepository{
         return list;
     }
 
+    @Step("Получить сотрудника по id в БД")
     @Override
     public EmployeeEntity getById(int id) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement(SELECT_EMPLOYEE);
@@ -99,6 +102,7 @@ public class EmployeeRepositoryJdbc implements EmployeeRepository{
         return employeeId;
     }
 
+    @Step("Удалить сотрудника по id в БД")
     public int deleteId(int id) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement(DELETE_EMPLOYEE, Statement.RETURN_GENERATED_KEYS);
         preparedStatement.setInt(1, id);
@@ -108,7 +112,8 @@ public class EmployeeRepositoryJdbc implements EmployeeRepository{
         return generatedKeys.getInt(1);
     }
 
-    public int updateId(int id) throws SQLException {
+    @Step("Изменить активность сотрудника по id в БД")
+    public int updateActive(int id) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_EMPLOYEE, Statement.RETURN_GENERATED_KEYS);
         preparedStatement.setInt(1, id);
         preparedStatement.executeUpdate();

@@ -14,16 +14,8 @@ public interface CompanyService extends Authorizable {
 
     Company getById(int id) throws IOException;
 
-    ApiResponse<CreateCompanyResponse> create(String name) throws IOException;
-
     ApiResponseCompany<CreateCompanyResponse> create(String name, String description) throws IOException;
 
-    void deleteById(int id);
-
-    Company edit(int id, String newName);
-
-    Company edit(int id, String newName, String newDescription);
-
-    Company changeStatus(int id, boolean isActive);
+    void deleteById(int id) throws IOException;
 
 }

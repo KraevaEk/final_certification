@@ -6,15 +6,14 @@ import org.junit.jupiter.api.extension.ParameterContext;
 import org.junit.jupiter.api.extension.ParameterResolutionException;
 import org.junit.jupiter.api.extension.ParameterResolver;
 import ru.inno.api.*;
-import ru.inno.ext.props.PropertyProvider;
-import ru.inno.model.api.UserInfo;
+import ru.inno.model.UserInfo;
 
 import java.io.IOException;
 
 public class CompanyServiceResolver implements ParameterResolver {
-    private final static String DEFAULT_USER = PropertyProvider.getInstance().getProps().getProperty("test.user");
-    private final static String DEFAULT_PASS = PropertyProvider.getInstance().getProps().getProperty("test.pass");
-    public static final String URL = PropertyProvider.getInstance().getProps().getProperty("test.url");
+    private final static String DEFAULT_USER = PropertyProvider.getInstance().getProps().getProperty("username");
+    private final static String DEFAULT_PASS = PropertyProvider.getInstance().getProps().getProperty("password");
+    public static final String URL = PropertyProvider.getInstance().getProps().getProperty("base.url");
 
     @Override
     public boolean supportsParameter(ParameterContext parameterContext, ExtensionContext extensionContext) throws ParameterResolutionException {

@@ -50,14 +50,16 @@ public class LogInterceptor implements Interceptor {
                 System.out.println(key + " : " + value);
             }
         }
+        System.out.println("BODY:");
 
-        long length = Long.parseLong(Objects.requireNonNull(response.header("Content-Length")));
-        if (length > 0) {
-            System.out.println("BODY:");
-            String s = response.peekBody(length).string();
-            System.out.println(s);
-        } else {
-            System.out.println("NO BODY");
-        }
+//        Content-Length не приходит в запросе /company Получить список компаний
+//        long length = Long.parseLong(Objects.requireNonNull(response.header("Content-Length")));
+//        if (length > 0) {
+//            System.out.println("BODY:");
+//            String s = response.peekBody(length).string();
+//            System.out.println(s);
+//        } else {
+//            System.out.println("NO BODY");
+//        }
     }
 }
